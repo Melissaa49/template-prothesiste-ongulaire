@@ -1,0 +1,4 @@
+.hero-images .img,
+.card {
+  box-shadow: var(--shadow-soft);
+}

@@ -1,0 +1,22 @@
+:root {
+  /* 🎨 fonds */
+  --bg-main: #fdf7f4;
+  --bg-soft: #f8efe9;
+
+  /* 🖋️ textes */
+  --text-main: #7a4a3a;
+  --text-soft: #9a6a5a;
+
+  /* ✨ or */
+  --gold-light: #f3d7b6;
+  --gold-dark: #cfa57c;
+
+  /* 🌫️ ombres luxe */
+  --shadow-soft:
+    0 20px 40px rgba(210, 154, 134, 0.25),
+    0 8px 18px rgba(210, 154, 134, 0.15);
+
+  /* arrondis */
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+}
