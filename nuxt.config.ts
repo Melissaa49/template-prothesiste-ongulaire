@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-
   /* ✅ AUTO-IMPORT DES COMPOSANTS (LA CLÉ) */
   components: [
     {
@@ -35,5 +34,7 @@ export default defineNuxtConfig({
         }
       ]
     }
-  }
+  },
+
+  modules: ['@nuxt/image']
 })

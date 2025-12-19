@@ -75,9 +75,6 @@
   font-size: 1rem;
 }
 
-.hero-btn {
-  display: inline-block;
-}
 
 /* CARTES */
 .hero-images {
@@ -111,20 +108,7 @@
   transform: rotate(3deg);
   z-index: 1;
 }
-/* BOUTON HERO – STYLE MAQUETTE */
-.hero-btn {
-  padding: 14px 34px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  background: linear-gradient(
-    145deg,
-    #e7b9a8,
-    #d29a86
-  );
-  box-shadow:
-    0 6px 18px rgba(210, 154, 134, 0.35),
-    inset 0 0 0 2px rgba(255, 255, 255, 0.4);
-}
+
 
 /* MOBILE – ZONE CENTRALE COMME MAQUETTE */
 @media (max-width: 768px) {

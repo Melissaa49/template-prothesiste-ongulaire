@@ -1,6 +1,7 @@
 <template>
   <section class="section gallery">
     <div class="container">
+
       <SectionTitle
         title="Mes Réalisations"
         subtitle="Explorez mon portfolio de manucures raffinées"
@@ -13,7 +14,7 @@
           :key="item.id"
           class="card"
         >
-          <img
+          <NuxtImg
             :src="item.image"
             :alt="item.alt"
             loading="lazy"
@@ -24,9 +25,10 @@
       <!-- CTA -->
       <div class="cta">
         <BaseButton>
-          Voir la Galerie complète
+          Voir la galerie complète
         </BaseButton>
       </div>
+
     </div>
   </section>
 </template>
@@ -34,26 +36,26 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useGallery } from '~/composables/useGallery'
+import { useResponsive } from '~/composables/useResponsive'
 
 const { items } = useGallery()
+const { isMobile } = useResponsive()
 
-/* ✅ logique SSR-safe */
+/* ✅ SSR-safe */
 const displayedItems = computed(() => {
-  if (import.meta.client && window.innerWidth <= 768) {
-    return items.slice(0, 4) // 📱 mobile
-  }
-  return items.slice(0, 6)   // 🖥️ desktop
+  return isMobile.value
+    ? items.slice(0, 4) // 📱 mobile
+    : items.slice(0, 6) // 🖥️ desktop
 })
 </script>
 
-
 <style scoped>
 /* =========================
-   SECTION
+   SECTION GALLERY
 ========================= */
 .gallery {
   background: var(--bg-main);
-  padding: 120px 0;
+  padding: 80px 0 120px;
 }
 
 /* =========================
@@ -61,36 +63,51 @@ const displayedItems = computed(() => {
 ========================= */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: 48px;
 }
 
 /* =========================
-   CARD IMAGE
+   CARD — RECTANGLE ÉLÉGANT
 ========================= */
 .card {
-  background: white;
-  border-radius: var(--radius-lg);
-  padding: 10px;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.25s ease;
+  position: relative;
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 12px;
+  overflow: hidden;
+
+  aspect-ratio: 4 / 3;
+
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.1);
 }
 
-.card img {
+/* IMAGE */
+.card :deep(img) {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
 /* =========================
    CTA
 ========================= */
 .cta {
-  margin-top: 48px;
+  margin-top: 64px;
   text-align: center;
 }
 
@@ -99,12 +116,22 @@ const displayedItems = computed(() => {
 ========================= */
 @media (max-width: 768px) {
   .gallery {
-    padding: 90px 0;
+    padding: 70px 0 100px;
   }
 
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 20px;
+    margin-top: 36px;
+  }
+
+  .card {
+    border-radius: 22px;
+    padding: 10px;
+    aspect-ratio: 3 / 2;
+  }
+
+  .card :deep(img) {
+    border-radius: 16px;
   }
 }
 </style>

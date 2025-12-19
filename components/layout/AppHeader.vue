@@ -16,7 +16,7 @@
       </nav>
 
       <!-- BURGER MOBILE -->
-      <button class="burger" @click="open = !open">
+      <button class="burger" @click="open = !open" aria-label="Menu">
         ☰
       </button>
     </div>
@@ -39,15 +39,23 @@ const open = ref(false)
 </script>
 
 <style scoped>
+/* =========================
+   HEADER — LUXE
+========================= */
+
 .app-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10000;
-  background: rgba(255, 248, 244, 0.85);
-  backdrop-filter: blur(10px);
-}
+
+  /* transparence élégante */
+  background: rgba(255, 250, 246, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  }
 
 .header-inner {
   height: 72px;
@@ -56,14 +64,24 @@ const open = ref(false)
   justify-content: space-between;
 }
 
-/* LOGO */
+/* =========================
+   LOGO — même ADN que titres
+========================= */
+
 .logo {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.35rem;
+  letter-spacing: 0.5px;
   color: #8a5a4a;
+  white-space: nowrap;
 }
 
-/* NAV DESKTOP */
+/* =========================
+   NAV DESKTOP
+========================= */
+
 .nav-desktop {
   display: flex;
   align-items: center;
@@ -71,16 +89,43 @@ const open = ref(false)
 }
 
 .nav-desktop a {
+  position: relative;
+  font-size: 0.95rem;
   color: #8a5a4a;
   text-decoration: none;
-  font-size: 0.95rem;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
 }
 
+.nav-desktop a:hover {
+  opacity: 1;
+}
+
+/* soulignement chic */
+.nav-desktop a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+
+.nav-desktop a:hover::after {
+  width: 100%;
+}
+
+/* bouton */
 .nav-btn {
   padding: 10px 22px;
 }
 
-/* BURGER */
+/* =========================
+   BURGER
+========================= */
+
 .burger {
   display: none;
   font-size: 26px;
@@ -89,16 +134,30 @@ const open = ref(false)
   color: #8a5a4a;
 }
 
-/* NAV MOBILE */
+/* =========================
+   NAV MOBILE
+========================= */
+
 .nav-mobile {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 24px;
-  background: #fff8f4;
+  padding: 28px 24px;
+
+  background: rgba(255, 250, 246, 0.95);
+  backdrop-filter: blur(10px);
 }
 
-/* RESPONSIVE */
+.nav-mobile a {
+  font-size: 1rem;
+  color: #8a5a4a;
+  text-decoration: none;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
   .nav-desktop {
     display: none;
@@ -109,7 +168,10 @@ const open = ref(false)
   }
 }
 
-/* TRANSITION */
+/* =========================
+   TRANSITION
+========================= */
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease;
@@ -118,4 +180,5 @@ const open = ref(false)
 .fade-leave-to {
   opacity: 0;
 }
+
 </style>
